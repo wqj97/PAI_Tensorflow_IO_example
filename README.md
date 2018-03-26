@@ -16,3 +16,6 @@
 │   └── ...
 └── upload_to_oss.py 打包上传脚本
 ```
+
+代码下载地址:
+[这里](https://github.com/wqj97/PAI_Tensorflow_IO_example/archive/1.0.zip)
