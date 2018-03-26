@@ -13,9 +13,9 @@ tf.flags.DEFINE_integer('batch_size', 50, '批大小')
 tf.flags.DEFINE_integer('hidden_1_size', 512, '隐藏层1神经元数')
 tf.flags.DEFINE_integer('hidden_2_size', 256, '隐藏层2神经元数')
 tf.flags.DEFINE_integer('output_size', 4, '输出数')
-tf.flags.DEFINE_integer('train_steps', 20000, '训练次数')
+tf.flags.DEFINE_integer('train_steps', 40000, '训练次数')
 tf.flags.DEFINE_integer('num_classes', 4, '分类数')
-tf.flags.DEFINE_integer('threads', 16, '读取线程')
+tf.flags.DEFINE_integer('threads', 18, '读取线程')
 tf.flags.DEFINE_float('learning_rate', 1e-3, '学习速率')
 
 tf.flags.DEFINE_boolean("isTrain", True, "定义是否是在训练")
@@ -64,7 +64,6 @@ tf.summary.scalar('auc', auc[1])
 
 sess.run(tf.local_variables_initializer())
 merged = tf.summary.merge_all()
-
 # 迭代训练
 for i in xrange(FLAGS.train_steps):
     # 取出文件名和数据
@@ -74,7 +73,7 @@ for i in xrange(FLAGS.train_steps):
         summary.add_summary(sess.run(merged), i)
         print sess.run(auc[1])
 
-    if i % 50 == 0 or i == FLAGS.train_steps - 1:
+    if i % 500 == 0 or i == FLAGS.train_steps - 1:
         saver.save(sess=sess, save_path=os.path.join(FLAGS.checkpointDir, 'save.model'))
 
 summary.close()
